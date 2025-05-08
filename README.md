@@ -2,7 +2,7 @@
 Project on Deployment of Static Website on AWS Cloud using Cloudfront, S3 bucket and IAM services.
 
 
-Deployed Static Website on AWS
+Deployed Static Website on AWS in few minutes.
 
 In this project, I deployed a static website to AWS using S3, CloudFront, and IAM.
 
