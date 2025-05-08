@@ -1,0 +1,25 @@
+name: Update Open PR Count in Port
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour (customize frequency)
+  push:
+    branches:
+      - main  # Runs on pushes to the 'main' branch
+
+jobs:
+  fetch-pr-count:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch Open PR Count
+        run: |
+          python3 fetch_pr_count.py 
+
+      - name: Update Port API
+        run: |
+          curl -X PUT https://app.getport.io/settings/data-model \
+            -H "Authorization: Bearer ${{ secrets.PORT_API_TOKEN}}" \
+            -d '{"open_pull_requests_count": "${open_pr_count}"}'
